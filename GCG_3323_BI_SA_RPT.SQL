@@ -1,0 +1,17 @@
+CREATE TABLE "GCG_3323_BI_SA_RPT"(
+ "TRMNL" CHAR(3),
+ "Print_Date" DATE,
+ "Date_Invoice" DATE,
+ "Customer" CHAR(6),
+ "Customer_Name" CHAR(30),
+ "Part" CHAR(20),
+ "Part_desc" CHAR(30),
+ "UM_Inventory" CHAR(2),
+ "Current_YTD_QTY" NUMERIC(13,4),
+ "Current_YTD_Dollars" NUMERIC(13,4),
+ "Current_YTD_Profit" NUMERIC(13,4),
+ "Current_YTD_GP" NUMERIC(13,4),
+ "PYTD_Qty" NUMERIC(13,4),
+ "PYTD_Dollars" NUMERIC(13,4),
+ "PYTD_Profit" NUMERIC(13,4),
+ "PYTD_GP" NUMERIC(13,4));
