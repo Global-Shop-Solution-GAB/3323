@@ -1,0 +1,971 @@
+Program.Sub.ScreenSU.Start
+gui.SS_Form1..create
+gui.SS_Form1..caption("Sales Analysis Report")
+gui.SS_Form1..size(5520,8685)
+gui.SS_Form1..position(0,0)
+gui.SS_Form1..event(unload,Ss_form1_unload)
+gui.SS_Form1..alwaysontop(False)
+gui.SS_Form1..fontname("Arial")
+gui.SS_Form1..fontsize(8)
+gui.SS_Form1..forecolor(0)
+gui.SS_Form1..fontstyle(,,,,)
+gui.SS_Form1..BackColor(-2147483633)
+gui.SS_Form1..controlbox(True)
+gui.SS_Form1..maxbutton(False)
+gui.SS_Form1..minbutton(False)
+gui.SS_Form1..mousepointer(0)
+gui.SS_Form1..moveable(True)
+gui.SS_Form1..sizeable(False)
+gui.SS_Form1..ShowInTaskBar(True)
+gui.SS_Form1..titlebar(True)
+gui.SS_Form1.lbl_dtpStart.create(label,"Beginning Date",True,1800,200,1,100,135,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.dtpStart.create(datepicker)
+gui.SS_Form1.dtpStart.visible(True)
+gui.SS_Form1.dtpStart.size(1800,345)
+gui.SS_Form1.dtpStart.zorder(0)
+gui.SS_Form1.dtpStart.position(100,335)
+gui.SS_Form1.dtpStart.enabled(True)
+gui.SS_Form1.dtpStart.checkbox(False)
+gui.SS_Form1.lbl_dtpEnd.create(label,"Ending Date",True,1800,200,1,1985,135,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.dtpEnd.create(datepicker)
+gui.SS_Form1.dtpEnd.visible(True)
+gui.SS_Form1.dtpEnd.size(1800,345)
+gui.SS_Form1.dtpEnd.zorder(0)
+gui.SS_Form1.dtpEnd.position(1985,335)
+gui.SS_Form1.dtpEnd.enabled(True)
+gui.SS_Form1.dtpEnd.checkbox(False)
+gui.SS_Form1.lbl_txtPartStart.create(label,"Part Start",True,1800,200,1,100,760,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.txtPartStart.create(textbox,"",True,1800,330,0,100,960,True,0,Arial,8,16777215,1)
+gui.SS_Form1.cmd_txtPartStart.create(button)
+gui.SS_Form1.cmd_txtPartStart.caption("^")
+gui.SS_Form1.cmd_txtPartStart.visible(True)
+gui.SS_Form1.cmd_txtPartStart.size(330,330)
+gui.SS_Form1.cmd_txtPartStart.zorder(0)
+gui.SS_Form1.cmd_txtPartStart.position(1985,960)
+gui.SS_Form1.cmd_txtPartStart.enabled(True)
+gui.SS_Form1.cmd_txtPartStart.fontname("Arial")
+gui.SS_Form1.cmd_txtPartStart.fontsize(8)
+gui.SS_Form1.cmd_txtPartStart.event(click,cmd_txtpartstart_click)
+gui.SS_Form1.txtPartEnd.create(textbox,"",True,1800,330,0,2455,960,True,0,Arial,8,16777215,1)
+gui.SS_Form1.cmd_txtPartEnd.create(button)
+gui.SS_Form1.cmd_txtPartEnd.caption("^")
+gui.SS_Form1.cmd_txtPartEnd.visible(True)
+gui.SS_Form1.cmd_txtPartEnd.size(330,330)
+gui.SS_Form1.cmd_txtPartEnd.zorder(0)
+gui.SS_Form1.cmd_txtPartEnd.position(4340,940)
+gui.SS_Form1.cmd_txtPartEnd.enabled(True)
+gui.SS_Form1.cmd_txtPartEnd.fontname("Arial")
+gui.SS_Form1.cmd_txtPartEnd.fontsize(8)
+gui.SS_Form1.cmd_txtPartEnd.event(click,cmd_txtpartend_click)
+gui.SS_Form1.chkAllParts.create(checkbox)
+gui.SS_Form1.chkAllParts.caption("All Parts")
+gui.SS_Form1.chkAllParts.visible(True)
+gui.SS_Form1.chkAllParts.size(1080,300)
+gui.SS_Form1.chkAllParts.zorder(0)
+gui.SS_Form1.chkAllParts.position(3625,1435)
+gui.SS_Form1.chkAllParts.enabled(True)
+gui.SS_Form1.chkAllParts.alignment(0)
+gui.SS_Form1.chkAllParts.fontname("Arial")
+gui.SS_Form1.chkAllParts.fontsize(8)
+gui.SS_Form1.chkAllParts.event(click,chkallparts_click)
+gui.SS_Form1.cmdAddPart.create(button)
+gui.SS_Form1.cmdAddPart.caption("Add")
+gui.SS_Form1.cmdAddPart.visible(True)
+gui.SS_Form1.cmdAddPart.size(1000,360)
+gui.SS_Form1.cmdAddPart.zorder(0)
+gui.SS_Form1.cmdAddPart.position(100,1410)
+gui.SS_Form1.cmdAddPart.enabled(True)
+gui.SS_Form1.cmdAddPart.fontname("Arial")
+gui.SS_Form1.cmdAddPart.fontsize(8)
+gui.SS_Form1.cmdAddPart.event(click,cmdaddpart_click)
+gui.SS_Form1.cmdClearPart.create(button)
+gui.SS_Form1.cmdClearPart.caption("Clear")
+gui.SS_Form1.cmdClearPart.visible(True)
+gui.SS_Form1.cmdClearPart.size(1000,360)
+gui.SS_Form1.cmdClearPart.zorder(0)
+gui.SS_Form1.cmdClearPart.position(2340,1395)
+gui.SS_Form1.cmdClearPart.enabled(True)
+gui.SS_Form1.cmdClearPart.fontname("Arial")
+gui.SS_Form1.cmdClearPart.fontsize(8)
+gui.SS_Form1.cmdClearPart.event(click,cmdclearpart_click)
+gui.SS_Form1.lbl_lvwPart.create(label,"Part Range",True,1800,200,1,100,1850,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.lvwPart.create(listview)
+gui.SS_Form1.lvwPart.view(3)
+gui.SS_Form1.lvwPart.addlistviewcolumn("ID",0,0)
+gui.SS_Form1.lvwPart.addlistviewcolumn("Beginning Part",2450,0)
+gui.SS_Form1.lvwPart.addlistviewcolumn("Ending Part",2450,0)
+gui.SS_Form1.lvwPart.visible(True)
+gui.SS_Form1.lvwPart.size(5080,2000)
+gui.SS_Form1.lvwPart.zorder(0)
+gui.SS_Form1.lvwPart.position(100,2100)
+gui.SS_Form1.lvwPart.enabled(True)
+gui.SS_Form1.lvwPart.fontname("Arial")
+gui.SS_Form1.lvwPart.fontsize(8)
+gui.SS_Form1.lvwPart.event(itemclick,lvwpart_itemclick)
+gui.SS_Form1.lbl_txtCustStart.create(label,"Customer Start",True,1800,200,1,100,4320,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.txtCustStart.create(textbox,"",True,1800,330,0,100,4550,True,0,Arial,8,16777215,1)
+gui.SS_Form1.cmd_txtCustStart.create(button)
+gui.SS_Form1.cmd_txtCustStart.caption("^")
+gui.SS_Form1.cmd_txtCustStart.visible(True)
+gui.SS_Form1.cmd_txtCustStart.size(330,330)
+gui.SS_Form1.cmd_txtCustStart.zorder(0)
+gui.SS_Form1.cmd_txtCustStart.position(1985,4550)
+gui.SS_Form1.cmd_txtCustStart.enabled(True)
+gui.SS_Form1.cmd_txtCustStart.fontname("Arial")
+gui.SS_Form1.cmd_txtCustStart.fontsize(8)
+gui.SS_Form1.cmd_txtCustStart.event(click,cmd_txtcuststart_click)
+gui.SS_Form1.txtCustEnd.create(textbox,"",True,1800,330,0,2455,4560,True,0,Arial,8,16777215,1)
+gui.SS_Form1.cmd_txtCustEnd.create(button)
+gui.SS_Form1.cmd_txtCustEnd.caption("^")
+gui.SS_Form1.cmd_txtCustEnd.visible(True)
+gui.SS_Form1.cmd_txtCustEnd.size(330,330)
+gui.SS_Form1.cmd_txtCustEnd.zorder(0)
+gui.SS_Form1.cmd_txtCustEnd.position(4340,4560)
+gui.SS_Form1.cmd_txtCustEnd.enabled(True)
+gui.SS_Form1.cmd_txtCustEnd.fontname("Arial")
+gui.SS_Form1.cmd_txtCustEnd.fontsize(8)
+gui.SS_Form1.cmd_txtCustEnd.event(click,cmd_txtcustend_click)
+gui.SS_Form1.chkAllCust.create(checkbox)
+gui.SS_Form1.chkAllCust.caption("All Customers")
+gui.SS_Form1.chkAllCust.visible(True)
+gui.SS_Form1.chkAllCust.size(1455,300)
+gui.SS_Form1.chkAllCust.zorder(0)
+gui.SS_Form1.chkAllCust.position(3625,5175)
+gui.SS_Form1.chkAllCust.enabled(True)
+gui.SS_Form1.chkAllCust.alignment(0)
+gui.SS_Form1.chkAllCust.fontname("Arial")
+gui.SS_Form1.chkAllCust.fontsize(8)
+gui.SS_Form1.chkAllCust.event(click,chkallcust_click)
+gui.SS_Form1.cmdAddCust.create(button)
+gui.SS_Form1.cmdAddCust.caption("Add")
+gui.SS_Form1.cmdAddCust.visible(True)
+gui.SS_Form1.cmdAddCust.size(1000,360)
+gui.SS_Form1.cmdAddCust.zorder(0)
+gui.SS_Form1.cmdAddCust.position(100,5135)
+gui.SS_Form1.cmdAddCust.enabled(True)
+gui.SS_Form1.cmdAddCust.fontname("Arial")
+gui.SS_Form1.cmdAddCust.fontsize(8)
+gui.SS_Form1.cmdAddCust.event(click,cmdaddcust_click)
+gui.SS_Form1.cmdClearCust.create(button)
+gui.SS_Form1.cmdClearCust.caption("Clear")
+gui.SS_Form1.cmdClearCust.visible(True)
+gui.SS_Form1.cmdClearCust.size(1000,360)
+gui.SS_Form1.cmdClearCust.zorder(0)
+gui.SS_Form1.cmdClearCust.position(2340,5135)
+gui.SS_Form1.cmdClearCust.enabled(True)
+gui.SS_Form1.cmdClearCust.fontname("Arial")
+gui.SS_Form1.cmdClearCust.fontsize(8)
+gui.SS_Form1.cmdClearCust.event(click,cmdclearcust_click)
+gui.SS_Form1.lvwCustomers.create(listview)
+gui.SS_Form1.lvwCustomers.view(3)
+gui.SS_Form1.lvwCustomers.addlistviewcolumn("ID",0,0)
+gui.SS_Form1.lvwCustomers.addlistviewcolumn("Beginning Customer",2450,0)
+gui.SS_Form1.lvwCustomers.addlistviewcolumn("Ending Customer",2450,0)
+gui.SS_Form1.lvwCustomers.visible(True)
+gui.SS_Form1.lvwCustomers.size(5080,2000)
+gui.SS_Form1.lvwCustomers.zorder(0)
+gui.SS_Form1.lvwCustomers.position(100,5665)
+gui.SS_Form1.lvwCustomers.enabled(True)
+gui.SS_Form1.lvwCustomers.fontname("Arial")
+gui.SS_Form1.lvwCustomers.fontsize(8)
+gui.SS_Form1.lvwCustomers.event(itemclick,lvwcustomers_itemclick)
+gui.SS_Form1.cmdPrint.create(button)
+gui.SS_Form1.cmdPrint.caption("Print")
+gui.SS_Form1.cmdPrint.visible(True)
+gui.SS_Form1.cmdPrint.size(1000,360)
+gui.SS_Form1.cmdPrint.zorder(0)
+gui.SS_Form1.cmdPrint.position(100,7740)
+gui.SS_Form1.cmdPrint.enabled(True)
+gui.SS_Form1.cmdPrint.fontname("Arial")
+gui.SS_Form1.cmdPrint.fontsize(8)
+gui.SS_Form1.cmdPrint.event(click,cmdprint_click)
+gui.SS_Form1.lbl6.create(label,"Part End",True,1935,255,1,2455,760,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.cmdPartRemove.create(button)
+gui.SS_Form1.cmdPartRemove.caption("Remove")
+gui.SS_Form1.cmdPartRemove.visible(True)
+gui.SS_Form1.cmdPartRemove.size(1000,360)
+gui.SS_Form1.cmdPartRemove.zorder(0)
+gui.SS_Form1.cmdPartRemove.position(1200,1400)
+gui.SS_Form1.cmdPartRemove.enabled(True)
+gui.SS_Form1.cmdPartRemove.fontname("Arial")
+gui.SS_Form1.cmdPartRemove.fontsize(8)
+gui.SS_Form1.cmdPartRemove.event(click,cmdpartremove_click)
+gui.SS_Form1.cmdCustRemove.create(button)
+gui.SS_Form1.cmdCustRemove.caption("Remove")
+gui.SS_Form1.cmdCustRemove.visible(True)
+gui.SS_Form1.cmdCustRemove.size(1000,360)
+gui.SS_Form1.cmdCustRemove.zorder(0)
+gui.SS_Form1.cmdCustRemove.position(1200,5135)
+gui.SS_Form1.cmdCustRemove.enabled(True)
+gui.SS_Form1.cmdCustRemove.fontname("Arial")
+gui.SS_Form1.cmdCustRemove.fontsize(8)
+gui.SS_Form1.cmdCustRemove.event(click,cmdcustremove_click)
+gui.SS_Form1.lbl7.create(label,"Customer End",True,1800,200,1,2500,4300,True,0,Arial,8,-2147483633,0)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.Global.sKey.Declare(String)
+Variable.Global.iKeyCust.Declare(Long,0)
+Variable.Global.iKeyPart.Declare(Long,0)
+Variable.UDT.uParts.Define("Dollars",Float)
+Variable.UDT.uParts.Define("GP%",Float)
+Variable.UDT.uParts.Define("Profit",Float)
+Variable.UDT.uParts.Define("Customer",String,Customer)
+Variable.UDT.uParts.Define("Cust_Name",String,Name_Cust_Ship)
+Variable.UDT.uParts.Define("Part",String,Part)
+Variable.UDT.uParts.Define("UM",String,UM_Inventory)
+Variable.UDT.uParts.Define("Part_Desc",String,Description)
+Variable.UDT.uParts.Define("Cost",Float,Cost)
+Variable.UDT.uParts.Define("Price_Discount",Float,Price_Discount)
+Variable.UDT.uParts.Define("Terminal",String)
+Variable.UDT.uParts.Define("Print_Date",Date)
+Variable.UDT.uParts.Define("Qty_Shipped",Float,Qty_Shipped)
+Variable.UDT.uParts.Define("Date_Invoice",String,Date_Invoice)
+Variable.uGlobal.uParts.Declare("uParts")
+Variable.UDT.uPrevYr.Define("Dollars",Float)
+Variable.UDT.uPrevYr.Define("GP%",Float)
+Variable.UDT.uPrevYr.Define("Profit",Float)
+Variable.UDT.uPrevYr.Define("Date_Invoice",String,Date_Invoice)
+Variable.UDT.uPrevYr.Define("Customer",String,Customer)
+Variable.UDT.uPrevYr.Define("Cust_Name",String,Name_Cust_Ship)
+Variable.UDT.uPrevYr.Define("Part",String,Part)
+Variable.UDT.uPrevYr.Define("Qty_Shipped",Float,Qty_Shipped)
+Variable.UDT.uPrevYr.Define("UM",String,UM_Inventory)
+Variable.UDT.uPrevYr.Define("Part_Desc",String,Description)
+Variable.UDT.uPrevYr.Define("Cost",Float,Cost)
+Variable.UDT.uPrevYr.Define("Price_Discount",Float,Price_Discount)
+Variable.UDT.uPrevYr.Define("Terminal",String)
+Variable.UDT.uPrevYr.Define("Print_Date",Date)
+Variable.uGlobal.uPrevYr.Declare("uPrevYr")
+Variable.Global.iUB.Declare(Long,0)
+
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Quote 4205
+'For National Plastics and Seals Inc.
+
+
+'this GAB Script will be used in conjunction of running a new custom report
+'GAB will be used for a front end screen and to pull data to a print file
+'Crystal will be used to display report.
+V.Local.bExists.Declare(Boolean)
+
+'F.Intrinsic.Debug.BenchmarkModeEnable
+
+
+'open connection
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+'first make sure that the table is found
+F.ODBC.Connection!conx.TableExists("GCG_3323_BI_SA_RPT",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	'table was not found, end program and dont let them contineu
+	F.Intrinsic.UI.Msgbox("GCG_3323_BI_SA_RPT table not found.","Table Missing")
+	F.ODBC.Connection!conx.Close
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.Else
+	Gui.SS_Form1..Show
+'	Gui.SS_Form1.txtCustEnd.Enabled(False)
+'	Gui.SS_Form1.txtCustStart.Enabled(False)
+'	Gui.SS_Form1.txtPartStart.Enabled(false)
+'	Gui.SS_Form1.txtPartEnd.Enabled(False)
+F.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.Populate.Start
+F.Intrinsic.Control.SetErrorHandler("Populate_Err")
+F.Intrinsic.Control.ClearErrors
+
+
+'here is where we will populate the tables based on the data
+'passed thru us, either through all customer and parts?
+V.Local.sError.Declare(String)
+V.Local.sPartRange.Declare(String)
+V.Local.sCustomerRange.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iCount.Declare(Long)
+V.Local.sSQL.Declare(String)
+V.Local.dCurrentStartDate.Declare(Date)
+V.Local.sCurrentStartDate.Declare(String)
+V.Local.dCurrentEndDate.Declare(Date)
+V.Local.sCurrentEndDate.Declare(String)
+V.Local.dPrevStartDate.Declare(Date)
+V.Local.dPrevEndDate.Declare(Date)
+V.Local.sPrevStartDate.Declare(String)
+V.Local.sPrevEndDate.Declare(String)
+V.Local.sRowPart.Declare(String)
+V.Local.sRowCust.Declare(String)
+V.Local.iDollars.Declare(Float)
+V.Local.iCost.Declare(Float)
+V.Local.iProfit.Declare(Float)
+V.Local.iGP.Declare(Float)
+V.Local.iUDT.Declare(Long)
+
+'Added date formatting to handle for the column type being changed to DATE in 2018.1
+V.Local.sCurrentStartDate.Set(V.screen.SS_Form1!dtpStart.Value)
+F.Intrinsic.String.Format(V.Local.sCurrentStartDate,"YYYY-MM-DD",v.Local.sCurrentStartDate)
+V.Local.sCurrentEndDate.Set(V.Screen.SS_Form1!dtpEnd.Value)
+F.Intrinsic.String.Format(V.Local.sCurrentEndDate,"YYYY-MM-DD",V.Local.sCurrentEndDate)
+
+F.Intrinsic.Control.If(V.uGlobal.uParts.UBound,=,-1)
+	V.uGlobal.uParts.Redim(0,0)
+F.Intrinsic.Control.EndIf
+
+'added date formatting to handle for the column type being changed to DATE in 2018.1
+F.Intrinsic.Date.DateAdd("YYYY",-1,V.Local.sCurrentstartdate,V.Local.dPrevStartDate)
+V.Local.sPrevStartDate.Set(V.Local.dPrevStartDate)
+F.Intrinsic.String.Format(V.Local.sPrevStartDate,"YYYY-MM-DD",V.Local.sPrevStartDate)
+F.Intrinsic.Date.DateAdd("YYYY",-1,V.Local.sCurrentEndDate,V.Local.dPrevEndDate)
+V.Local.sPrevEndDate.Set(V.Local.dPrevEndDate)
+F.Intrinsic.String.Format(V.Local.sPrevEndDate,"YYYY-MM-DD",V.Local.sPrevEndDate)
+
+'here we need to loop thru out part ranges entered if any exist
+V.Local.sPartRange.Set(V.Args.Parts)
+V.Local.sCustomerRange.Set(V.Args.Customers)
+
+F.Intrinsic.String.Split(V.Local.sPartRange,"$@$",V.Local.sRowPart)
+F.Intrinsic.String.Split(V.Local.sCustomerRange,"$@$",V.Local.sRowCust)
+
+'F.Intrinsic.Variable.SetUDTFieldDateMask(V.uGlobal.uParts!Date_Invoice,"YYYY-MM-DD")
+'F.Intrinsic.Variable.SetUDTFieldDateMask(V.uGlobal.uPrevYr!Date_Invoice,"YYYY-MM-DD")
+
+'always redim at the start of program to -1
+V.uGlobal.uParts.Redim(-1,-1)
+V.uGlobal.uPrevYr.Redim(-1,-1)
+
+
+'go thru each range of parts
+F.Intrinsic.Control.DoUntil(V.Local.iC,>,V.Local.sRowPart.UBound)
+	F.Intrinsic.String.Split(V.Local.sRowPart(v.Local.iC),"*!*",V.Local.sPartRange)
+	'go thru each range of customer for each range of parts??
+	V.Local.iCount.Set(0)
+	F.Intrinsic.Control.DoUntil(V.Local.iCount,>,V.Local.sRowCust.UBound)
+'		F.Intrinsic.UI.ChangeWaitStatus("Processing...",V.Local.iCount,0,V.Local.sRowCust.UBound)
+		F.Intrinsic.String.Split(V.Local.srowcust(v.Local.iCount),"*!*",V.Local.sCustomerRange)
+		'Now here comes the query
+		
+		F.Intrinsic.String.Concat("Select Date_Invoice,Customer, Name_Cust_Ship, Part, Description, UM_Inventory, Qty_Shipped, Price_Discount, Cost From Order_Hist_Line Where  Date_Invoice Between '",V.Local.sCurrentStartDate,"' AND '",V.local.sSQL)
+		F.Intrinsic.String.Concat(V.Local.sSQL,V.Local.sCurrentEndDate,"' AND Part Between '",V.Local.sPartRange(1),"' AND '",V.local.sPartRange(2),"' AND Customer Between '",V.local.sSQL)
+		F.intrinsic.String.Concat(V.Local.sSQL,V.Local.sCustomerRange(1),"' AND '",V.Local.sCustomerRange(2),"' AND Part <> 'FREIGHT'  Order By Date_Invoice,Part, Customer",V.Local.sSQL)
+		'open recordset
+		F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSQL)
+		'load UDT from Recordset
+		F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rst","V.uGlobal.uParts",True)
+		F.ODBC.conx!rst.Close
+		V.Local.sSQL.Set("")
+		F.Intrinsic.String.Concat("Select Date_Invoice,Customer, Name_Cust_Ship, Part, Description, UM_Inventory, Qty_Shipped, Price_Discount, Cost From Order_Hist_Line Where  Date_Invoice Between '",V.Local.sPrevStartDate,"' AND '",V.local.sSQL)
+		F.Intrinsic.String.Concat(V.Local.sSQL,V.Local.sPrevEndDate,"' AND Part Between '",V.Local.sPartRange(1),"' AND '",V.local.sPartRange(2),"' AND Customer Between '",V.local.sSQL)
+		F.intrinsic.String.Concat(V.Local.sSQL,V.Local.sCustomerRange(1),"' AND '",V.Local.sCustomerRange(2),"' AND Part  <>  'FREIGHT' Order By Date_Invoice,Part, Customer",V.Local.sSQL)
+		F.ODBC.connection!conx.OpenLocalRecordsetRO("rstPrev",V.Local.sSQL)
+		F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstPrev","V.uglobal.uPrevYr",True)
+		F.ODBC.conx!rstPrev.Close
+		F.Intrinsic.Math.Add(V.Local.iCount,1,V.Local.iCount)
+		F.Intrinsic.Control.CallSub(Processdata)
+	F.Intrinsic.Control.loop
+	F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+F.Intrinsic.Control.Loop
+
+F.Intrinsic.Control.CallSub(Udt2table)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Populate_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_Sales_Analysis_RPT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Populate.End
+
+program.sub.ss_form1_unload.start
+
+'close the connection and form
+F.ODBC.Connection!conx.Close
+F.Intrinsic.Control.End
+
+program.sub.ss_form1_unload.end
+
+program.sub.cmd_txtpartstart_click.start
+
+
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.String.Split("Part Number*!*Description","*!*",V.Local.sTitles)
+F.Intrinsic.String.Split("3000*!*3500","*!*",V.Local.iWidths)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser("Part Browser","conx","Select Part, Description From V_Inventory_Mstr Order By Part",V.Local.sTitles,V.Local.iWidths,5000,8000,V.Local.sRet)
+
+'F.Intrinsic.UI.Browser(205,"",V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Local.sRet,=,"***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_Form1.txtPartStart.Text(V.Local.sRet(0))
+	Gui.SS_Form1.txtPartEnd.Text(V.locAL.sRet(0))
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_txtpartstart_click.end
+
+program.sub.cmd_txtpartend_click.start
+'part end browsers
+
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.String.Split("Part Number*!*Description","*!*",V.Local.sTitles)
+F.Intrinsic.String.Split("3000*!*3500","*!*",V.Local.iWidths)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser("Part Browser","conx","Select Part, Description From V_Inventory_Mstr Order By Part",V.Local.sTitles,V.Local.iWidths,5000,8000,V.Local.sRet)
+
+
+'F.Intrinsic.UI.Browser(205,"",V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Local.sRet,=,"***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_Form1.txtPartEnd.Text(V.Local.sRet(0))
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_txtpartend_click.end
+
+program.sub.cmdaddpart_click.start
+
+'this will add the selected range into the list view with its contents
+'make sure that both part info is chosne
+
+V.Local.sPartStart.Declare(String)
+V.Local.sPartEnd.Declare(String)
+
+V.Local.sPartStart.Set(V.Screen.SS_Form1!txtPartStart.Text)
+V.Local.sPartEnd.Set(V.Screen.SS_Form1!txtPartEnd.Text)
+
+
+F.Intrinsic.Control.If(V.Local.sPartStart.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please choose a beginning part number.","No Part Entered")
+	F.Intrinsic.Control.Exitsub
+F.Intrinsic.Control.elseif(V.local.sPartEnd.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please choose an ending part number","No Part Entered")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Math.Add(V.Global.iKeyPart,1,V.Global.iKeyPart)
+Gui.SS_Form1.lvwPart.AddListItem(V.Global.iKeyPart,V.Global.iKeyPart)
+Gui.SS_Form1.lvwPart.SetListItemSubItemText(V.Global.iKeyPart,1,V.Screen.SS_Form1!txtPartStart.Text)
+Gui.SS_Form1.lvwPart.SetListItemSubItemText(V.Global.iKeyPart,2,V.Screen.SS_Form1!txtPartEnd.Text)
+Gui.SS_Form1.txtpartstart.Text("")
+Gui.SS_Form1.txtPartEnd.Text("")
+
+
+
+program.sub.cmdaddpart_click.end
+
+program.sub.cmdclearpart_click.start
+'clear out the text box and list view items
+Gui.SS_Form1.lvwPart.ClearItems
+V.Global.iKeyPart.Set(0)
+Gui.SS_Form1.txtPartStart.Text("")
+Gui.SS_Form1.txtPartEnd.Text("")
+
+
+program.sub.cmdclearpart_click.end
+
+program.sub.cmd_txtcuststart_click.start
+
+'customer browser for customer start
+
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.String.Split("Customer*!*Customer Name","*!*",V.Local.sTitles)
+F.Intrinsic.String.Split("3000*!*3500","*!*",V.Local.iWidths)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.SetBrowserHotTypeAheadColumn(1)
+F.Intrinsic.UI.Browser("Customer Browser","conx","Select Customer, Name_Customer From V_Customer_Master Order By Customer",V.Local.sTitles,V.Local.iWidths,5000,8000,V.Local.sRet)
+
+
+'F.Intrinsic.UI.Browser(205,"",V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Local.sRet,=,"***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_Form1.txtCustStart.Text(V.Local.sRet(0))
+	Gui.SS_Form1.txtCustEnd.Text(V.Local.sRet(0))
+F.Intrinsic.Control.EndIf
+
+
+program.sub.cmd_txtcuststart_click.end
+
+program.sub.cmd_txtcustend_click.start
+'customer browser for customer end
+
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.String.Split("Customer*!*Customer Name","*!*",V.Local.sTitles)
+F.Intrinsic.String.Split("3000*!*3500","*!*",V.Local.iWidths)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.SetBrowserHotTypeAheadColumn(1)
+F.Intrinsic.UI.Browser("Customer Browser","conx","Select Customer, Name_Customer From V_Customer_Master Order By Customer",V.Local.sTitles,V.Local.iWidths,5000,8000,V.Local.sRet)
+
+'F.Intrinsic.UI.Browser(205,"",V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Local.sRet,=,"***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_Form1.txtCustEnd.Text(V.Local.sRet(0))
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_txtcustend_click.end
+
+program.sub.cmdaddcust_click.start
+'add fselected customer range into customer range listview box
+
+V.Local.sCustStart.Declare(String)
+V.Local.sCustEnd.Declare(String)
+
+
+
+V.Local.sCustStart.Set(V.Screen.SS_Form1!txtCustStart.Text)
+V.Local.sCustEnd.Set(V.Screen.SS_Form1!txtCustEnd.Text)
+
+F.Intrinsic.Control.If(V.Local.sCustStart.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please choose a Beginning Customer")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Elseif(V.Local.sCustEnd.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please choose an Ending Cusomer")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Math.Add(V.Global.iKeyCust,1,V.Global.iKeyCust)
+Gui.SS_Form1.lvwCustomers.AddListItem(V.global.iKeyCust,V.Global.iKeyCust)
+Gui.SS_Form1.lvwCustomers.SetListItemSubItemText(V.Global.iKeyCust,1,V.Local.sCustStart)
+Gui.SS_Form1.lvwCustomers.SetListItemSubItemText(V.Global.iKeyCust,2,V.Local.sCustEnd)
+Gui.SS_Form1.txtCustEnd.Text("")
+Gui.SS_Form1.txtCustStart.Text("")
+
+
+
+program.sub.cmdaddcust_click.end
+
+program.sub.cmdclearcust_click.start
+'clear out entire contents of list view for the CUstomer
+Gui.SS_Form1.lvwCustomers.ClearItems
+'set the global variable back to 0
+V.Global.iKeyCust.Set(0)
+'and clear out the textbox
+Gui.SS_Form1.txtCustEnd.Text("")
+Gui.SS_Form1.txtCustStart.Text("")
+
+
+
+program.sub.cmdclearcust_click.end
+
+program.sub.cmdprint_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdprint_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+
+'this information will pull in the parameters and then make this stuff happen.
+
+
+'first we need to check to make sure the date range entered is less than 365 days
+V.Local.iNumDays.Declare(Long)
+V.Local.sPartRange.Declare(String)
+V.Local.sCustRange.Declare(String)
+V.Local.sSQL.Declare(String)
+V.Local.sError.Declare(String)
+
+'need to get current date range entered
+'and also then get the date from year prior
+
+'first we need to check to make sure the date range entered is less than 365 days
+F.Intrinsic.Date.DateDiff("D",V.Screen.SS_Form1!dtpStart.Value,V.Screen.SS_Form1!dtpEnd.Value,V.Local.iNumDays)
+'F.Intrinsic.UI.Msgbox(V.Local.iNumDays)
+F.Intrinsic.Control.If(V.Local.iNumDays,>,365)
+	F.Intrinsic.UI.Msgbox("Date range cannot be greater than 365 days.","Date Range")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.SS_Form1!dtpStart.Value,>,V.Screen.SS_Form1!dtpEnd.Value)
+	F.Intrinsic.UI.Msgbox("Beginning date cannot be after the End date.","Date Range")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.UI.Msgbox(V.Local.dPrevEndDate,V.Local.dPrevStartdate)
+F.Intrinsic.Control.If(V.Screen.SS_Form1!chkAllParts.Value,=,1)
+F.Intrinsic.Control.AndIf(V.Screen.SS_Form1!chkAllCust.Value,=,1)
+	'meaning the have chosen all parts and all customers options
+	'so just search for everything
+	'query the first and last customers and parts, then put them into the part and customer ranges delimited by a *!*.
+	F.ODBC.connection!conx.OpenLocalRecordsetRO("rst","Select Top 1 Part From V_Inventory_Mstr Where Part <> '' Order By Part")
+	V.Local.sPartRange.Set(V.ODBC.conx!rst.FieldValTrim!Part)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst1","Select Top 1 Part From V_Inventory_Mstr Where Part <> '' Order By Part Desc")
+	F.Intrinsic.String.Concat("1*!*",V.Local.sPartRange,"*!*",V.ODBC.conx!rst1.FieldValTrim!Part,V.Local.sPartRange)
+	F.ODBC.conx!rst.Close
+	F.ODBC.conx!rst1.Close
+	'now we do the customer
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst","Select Top 1 Customer From V_Customer_Master Order By Customer")
+	V.Local.sCustRange.Set(V.ODBC.conx!rst.FieldValTrim!Customer)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst1","Select Top 1 Customer From V_Customer_Master Order BY Customer Desc")
+	F.Intrinsic.String.Concat("1*!*",V.Local.sCustRange,"*!*",V.ODBC.conx!rst1.FieldValTrim!Customer,V.Local.sCustRange)
+	F.ODBC.conx!rst.Close
+	F.ODBC.conx!rst1.Close
+F.Intrinsic.Control.ElseIf(V.Screen.SS_Form1!chkAllParts.Value,=,1)
+F.Intrinsic.Control.AndIf(V.Screen.SS_Form1!chkAllCust.Value,=,0)
+	'meaning they have all parts checked and not all customers checked so that would cause us to read the list view contents of the form customers
+	V.Local.sCustRange.Set(V.Screen.SS_Form1!lvwCustomers.ListViewContents)
+	F.ODBC.connection!conx.OpenLocalRecordsetRO("rst","Select Top 1 Part From V_Inventory_Mstr Where Part <> '' Order By Part")
+	V.Local.sPartRange.Set(V.ODBC.conx!rst.FieldValTrim!Part)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst1","Select Top 1 Part From V_Inventory_Mstr Where Part <> '' Order By Part Desc")
+	F.Intrinsic.String.Concat("1*!*",V.Local.sPartRange,"*!*",V.ODBC.conx!rst1.FieldValTrim!Part,V.Local.sPartRange)
+	F.ODBC.conx!rst.Close
+	F.ODBC.conx!rst1.Close
+F.Intrinsic.Control.ElseIf(V.Screen.SS_Form1!chkAllParts.Value,=,0)
+F.Intrinsic.Control.AndIf(V.Screen.SS_Form1!chkAllCust.Value,=,1)
+	'meaning they have all customers checked but not all parts checked so we need to get teh list box contents of the parts
+	V.Local.sPartRange.Set(V.Screen.SS_Form1!lvwPart.ListViewContents)
+	'now we do the customer
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst","Select Top 1 Customer From V_Customer_Master Order By Customer")
+	V.Local.sCustRange.Set(V.ODBC.conx!rst.FieldValTrim!Customer)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst1","Select Top 1 Customer From V_Customer_Master Order BY Customer Desc")
+	F.Intrinsic.String.Concat("1*!*",V.Local.sCustRange,"*!*",V.ODBC.conx!rst1.FieldValTrim!Customer,V.Local.sCustRange)
+	F.ODBC.conx!rst.Close
+	F.ODBC.conx!rst1.Close
+F.Intrinsic.Control.Else
+	'this should mean that no options of all have been checked
+	V.local.spartrange.Set(V.Screen.SS_Form1!lvwPart.ListViewContents)
+	V.Local.sCustRange.Set(V.Screen.SS_Form1!lvwCustomers.ListViewContents)
+F.Intrinsic.Control.EndIf
+
+'check to make sure that values have been passed to both part range and cust range
+F.Intrinsic.Control.If(V.Local.sPartRange.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please Add a selection range or choose All Parts for Part values..","No Part Selected")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Local.sCustRange.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please add a selection range or choose All Customers for Customer values..","No Customer Selected")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+Gui.SS_Form1..Visible(False)
+F.Intrinsic.UI.InvokeWaitDialog("Processing...","Sales Analysis")
+'call the print sub passing the variables to sub
+F.Intrinsic.Control.CallSub(Populate,"Parts",V.Local.sPartRange,"Customers",V.Local.sCustRange)
+
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdprint_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_Sales_Analysis_RPT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdprint_click.end
+
+program.sub.lvwpart_itemclick.start
+'set teh list item colum
+'when they have clicked on a column in the list view
+
+V.Global.sKey.Set(V.Args.itemkey)
+
+
+program.sub.lvwpart_itemclick.end
+
+program.sub.lvwcustomers_itemclick.start
+'set the skey when they have clicked on a cell list item
+'within the list view for the customer
+V.Global.sKey.Set(V.Args.itemkey)
+
+program.sub.lvwcustomers_itemclick.end
+
+Program.Sub.UDT2Table.Start
+F.Intrinsic.Control.SetErrorHandler("UDT2Table_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.itotalUDT.Declare(Long)
+V.Local.sError.Declare(String)
+V.Local.iR.Declare(Long)
+V.Local.iUdt.Declare(Long)
+V.Local.sUDT.Declare(String)
+V.Local.iC.Declare(Long)
+V.local.sSQL.Declare(String)
+V.Local.sTemp.Declare(String)
+V.local.dDate.Declare(Date)
+V.Local.iPer.Declare(Long)
+V.Local.sDate.Declare(String)
+
+
+'this subroutine will write the
+'required records to the GCG_3323_BI_SA_RPT table
+F.Intrinsic.String.Split("uParts*!*uPrevYr","*!*",V.Local.sUDT)
+
+F.Intrinsic.Control.If(V.uGlobal.uParts.UBound,<,0)
+	F.Intrinsic.UI.Msgbox("No records found for selected criteria.","No Records Found")
+	F.Intrinsic.UI.CloseWaitDialog
+	Gui.SS_Form1..Visible(True)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+'must delete the records from our BI table where the terminal matches from GCG_3323_BI_SA_RPT
+F.Intrinsic.String.Concat("Delete From GCG_3323_BI_SA_RPT Where TRMNL = '",V.Caller.Terminal,"'",V.Local.sSQL)
+F.ODBC.Connection!conx.Execute(V.Local.sSQL)
+
+
+'add a counter
+F.Intrinsic.Math.Add(V.uGlobal.uParts.UBound,V.uGlobal.uPrevYr.UBound,V.Local.itotalUDT)
+V.Local.iPer.Set(0)
+
+'F.Intrinsic.Debug.InvokeDebugger
+'F.Intrinsic.Debug.Stop
+'open recordset for writing
+F.ODBC.Connection!conx.OpenLocalRecordsetRW("rst","Select * From GCG_3323_BI_SA_RPT")
+'loop thru the UDT
+F.Intrinsic.Control.For(V.Local.iR,0,1,1)
+	V.Local.sTemp.Set(V.Local.sUDT(v.Local.iR))
+	V.Local.iC.Set(0)
+	F.Intrinsic.Control.DoUntil(V.local.iC,>,v.uglobal.[v.local.sTemp].ubound)
+		F.Intrinsic.UI.ChangeWaitStatus("Writing Records...",V.Local.iPer,0,V.Local.itotalUDT)
+		F.ODBC.conx!rst.AddNew
+		F.ODBC.conx!rst.Set!TRMNL(V.Caller.Terminal)
+		F.ODBC.conx!rst.Set!Print_Date(V.Ambient.Date)
+'		'got to format date a bit
+'		V.Local.dDate.Set(v.uGlobal.[v.local.sTemp](v.Local.iC)!Date_Invoice)
+'		F.Intrinsic.String.DateString(V.Local.dDate,V.local.sDate)
+'		F.Intrinsic.String.Format(V.Local.sDate,"YYYY-MM-DD",V.Local.sDate)
+		F.ODBC.conx!rst.Set!Date_Invoice(V.uGlobal.[v.local.sTemp](v.Local.iC)!Date_Invoice)
+'		F.ODBC.conx!rst.Set!Date_Invoice(V.local.sDate)
+		F.ODBC.conx!rst.Set!Customer(V.uGlobal.[v.local.sTemp](v.Local.iC)!Customer)
+		F.ODBC.conx!rst.Set!Customer_Name(V.uGlobal.[v.local.sTemp](v.Local.iC)!Cust_Name)
+		F.ODBC.conx!rst.Set!Part(V.uGlobal.[v.local.sTemp](v.Local.iC)!Part)
+		F.ODBC.conx!rst.Set!Part_desc(V.uGlobal.[v.local.stemp](v.Local.iC)!Part_Desc)
+		F.ODBC.conx!rst.Set!UM_Inventory(V.uGlobal.[v.local.sTemp](v.Local.iC)!UM)
+		F.Intrinsic.Control.If(V.Local.iR,=,0)
+			F.ODBC.conx!rst.Set!Current_YTD_Qty(V.uGlobal.[v.local.stemp](v.Local.iC)!Qty_Shipped)
+			F.ODBC.conx!rst.Set!Current_YTD_Dollars(V.uGlobal.[v.local.sTemp](v.Local.iC)!Dollars)
+			F.ODBC.conx!rst.Set!CUrrent_YTD_Profit(V.uGlobal.[v.local.sTemp](v.Local.iC)!Profit)
+			F.ODBC.conx!rst.Set!Current_YTD_GP(V.uGlobal.[v.local.sTemp](v.Local.iC)!GP%)
+			F.ODBC.conx!rst.Set!PYTD_Qty(0)
+			F.ODBC.conx!rst.Set!PYTD_Dollars(0)
+			F.ODBC.conx!rst.Set!PYTD_Profit(0)
+			F.ODBC.conx!rst.Set!PYTD_GP(0)
+		F.Intrinsic.Control.Else
+			F.ODBC.conx!rst.Set!PYTD_Qty(V.uGlobal.[v.local.sTemp](v.Local.iC)!Qty_Shipped)
+			F.ODBC.conx!rst.Set!PYTD_Dollars(V.uGlobal.[v.local.sTemp](v.Local.iC)!Dollars)
+			F.ODBC.conx!rst.Set!PYTD_Profit(V.uGlobal.[v.local.sTemp](v.Local.iC)!Profit)
+			F.ODBC.conx!rst.Set!PYTD_GP(V.uGlobal.[v.local.sTemp](v.Local.iC)!GP%)
+			F.ODBC.conx!rst.Set!Current_YTD_Qty(0)
+			F.ODBC.conx!rst.Set!Current_YTD_Dollars(0)
+			F.ODBC.conx!rst.Set!CUrrent_YTD_Profit(0)
+			F.ODBC.conx!rst.Set!Current_YTD_GP(0)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rst.Update
+		F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+		F.Intrinsic.Math.Add(V.Local.iPer,1,V.Local.iPer)
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.Next(V.Local.iR)
+F.ODBC.conx!rst.Close
+F.Intrinsic.Control.CallSub(Report)
+
+
+F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Label("UDT2Table_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_Sales_Analysis_RPT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.UDT2Table.End
+
+Program.Sub.Report.Start
+F.Intrinsic.Control.SetErrorHandler("Report_Err")
+F.Intrinsic.Control.ClearErrors
+
+'print the report after all is said and done
+V.Local.sError.Declare(String)
+V.local.sParam.Declare(String)
+V.Local.sParamVal.Declare(String)
+V.Local.iRptID.Declare(Long)
+V.Local.sRptName.Declare(String)
+V.Local.sDateRange.Declare(String)
+
+
+F.Intrinsic.String.Concat(V.Screen.SS_Form1!dtpStart.Value," - ",V.Screen.SS_Form1!dtpEnd.Value,V.Local.sDateRange)
+V.Local.sParam.Set("Terminal*!*StartDate*!*EndDate")
+F.Intrinsic.String.Concat(V.Caller.Terminal,"*!*",V.Screen.SS_Form1!dtpStart.Value,"*!*",V.Screen.SS_Form1!dtpEnd.Value,V.Local.sParamVal)
+F.Intrinsic.String.Split(V.Local.sParam,"*!*",V.local.sParam)
+F.Intrinsic.String.Split(V.Local.sParamVal,"*!*",V.Local.sparamval)
+F.Global.BI.GetIDFromName("GCG_3323_Sales_Analysis.rpt",V.Local.iRptID)
+F.Intrinsic.Control.If(V.Local.iRptID,=,-1)
+	F.Intrinsic.UI.Msgbox("GCG_3323_Sales_Analysis.rpt not found")
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.UI.CloseWaitDialog
+F.Global.BI.PrintReport(V.Local.irptid,0,V.Local.sParam,V.Local.sParamVal,"",False)
+F.Intrinsic.Control.End
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Report_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_Sales_Analysis_RPT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Report.End
+
+program.sub.chkallparts_click.start
+
+'disable list view box and the add button
+F.Intrinsic.Control.If(V.Screen.SS_Form1!chkAllParts.Value,=,1)
+	Gui.SS_Form1.lvwPart.Enabled(False)
+	Gui.SS_Form1.cmdAddPart.Enabled(False)
+	F.Intrinsic.Control.CallSub(Cmdclearpart_click)
+F.Intrinsic.Control.Else
+	Gui.SS_Form1.lvwPart.Enabled(True)
+	Gui.SS_Form1.cmdAddPart.Enabled(True)
+F.Intrinsic.Control.EndIf
+
+program.sub.chkallparts_click.end
+
+program.sub.chkallcust_click.start
+
+'if they check the all customers checkbox disable the list view and add button from adding a range, cause it
+'is not needed when they wwant to search for all the customer
+
+F.Intrinsic.Control.If(V.Screen.SS_Form1!chkAllCust.Value,=,1)
+	Gui.SS_Form1.cmdAddCust.Enabled(False)
+	Gui.SS_Form1.lvwCustomers.Enabled(False)
+	F.Intrinsic.Control.CallSub(Cmdclearcust_click)
+F.Intrinsic.Control.Else
+	Gui.SS_Form1.cmdAddCust.Enabled(True)
+	Gui.SS_Form1.lvwCustomers.Enabled(True)
+F.Intrinsic.Control.EndIf
+
+program.sub.chkallcust_click.end
+
+program.sub.cmdpartremove_click.start
+'this will remove the selected item from the list view
+'of the part list view
+
+Gui.SS_Form1.lvwPart.RemoveItem(V.Global.sKey)
+
+
+program.sub.cmdpartremove_click.end
+
+program.sub.cmdcustremove_click.start
+'this will remove the selected item from the list
+'of the customer
+Gui.SS_Form1.lvwCustomers.RemoveItem(V.Global.sKey)
+
+program.sub.cmdcustremove_click.end
+
+Program.Sub.ProcessData.Start
+'here we are going to go through the UDT's and loop through them and calculate the processing of each.
+
+
+V.Local.iProfit.Declare(Float)
+V.Local.iDollars.Declare(Float)
+V.Local.iGP.Declare(Float)
+V.Local.iCost.Declare(Float)
+V.Local.iLoop.Declare(Long)
+V.Local.sUDT.Declare(String)
+V.Local.iR.Declare(Long)
+V.Local.iUdt.Declare(Long,0)
+V.Local.sTemp.Declare(String)
+
+
+'array the udt ref name
+F.Intrinsic.String.Split("uParts*!*uPrevYr","*!*",V.Local.sUDT)
+
+'F.Intrinsic.Debug.InvokeDebugger
+'F.Intrinsic.Debug.Stop
+
+'need to loop through both udt's twice.
+'so based on the loop we are on, lets set which udt to go through
+F.Intrinsic.Control.For(V.Local.iR,0,1,1)
+	V.Local.sTemp.Set(V.Local.sUDT(v.Local.iR))
+	V.Local.iUdt.Set(0)
+	F.Intrinsic.Control.DoUntil(V.Local.iUdt,>,v.uGlobal.[v.local.stemp].ubound)
+		'ytd dollars, qty shipped times price discount?'
+	'	F.Intrinsic.Math.Mult(V.ODBC.conx!rst.FieldValTrim!Qty_Shipped,V.ODBC.conx!rst.FieldValTrim!Price_Discount,V.Local.iDollars)
+		F.Intrinsic.Math.Mult(v.uglobal.[v.local.sTemp](v.Local.iUdt)!Qty_Shipped,V.uGlobal.[v.local.sTemp](v.Local.iUdt)!Price_Discount,V.Local.iDollars)
+		V.uGlobal.[v.local.sTemp](v.local.iUDT)!Dollars.Set(V.Local.iDollars)
+		'profit dollars ytd, cost
+'		F.Intrinsic.Math.Mult(V.ODBC.conx!rst.FieldValTrim!qty_shipped,V.ODBC.conx!rst.FieldValTrim!Cost,V.Local.iCost)
+		F.Intrinsic.Math.Mult(V.uGlobal.[v.local.sTemp](v.Local.iUdt)!Qty_Shipped,V.uGlobal.[v.local.sTemp](v.local.iUdt)!Cost,V.Local.iCost)
+		'profit now
+		F.Intrinsic.Math.Sub(V.Local.iDollars,V.Local.iCost,V.Local.iProfit)
+		V.uGlobal.[v.local.sTemp](v.Local.iUdt)!Profit.Set(v.Local.iProfit)
+		'GP % , Revenue minus cost over revenue
+		F.Intrinsic.Math.Sub(V.Local.iDollars,V.Local.iCost,V.Local.iProfit)
+		F.Intrinsic.Control.If(V.Local.iDollars,>,0)
+			F.Intrinsic.Math.Div(V.Local.iProfit,V.Local.iDollars,V.Local.iGP)
+			'times is by 100 to represent a %?
+			F.Intrinsic.Math.Mult(V.Local.iGP,100,V.Local.iGP)
+		F.Intrinsic.Control.Else
+			V.Local.iGP.Set(0.00)
+		F.Intrinsic.Control.EndIf
+'		V.uGlobal.uParts(v.local.iUDT)!GP%.Set(V.Local.iGP)
+		V.uGlobal.[v.local.sTemp](v.Local.iUdt)!GP%.Set(v.Local.iGP)
+	F.Intrinsic.Math.Add(V.Local.iUdt,1,V.local.iudt)
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.Next(V.Local.iR)
+
+	
+
+
+
+
+Program.Sub.ProcessData.End
+
+Program.Sub.Comments.Start
+${$0$}$GCG_Sales_Analysis_RPT$}$SUPERVSR$}$2/1/2013
+Program.Sub.Comments.End
+Program.Sub.ScreenSS.Start
+SS_Form1{{CAPTION::Sales Analysis Report
+SS_Form1.CTRL{{NAME::dtpStart\\TYPE::6\\CAPTION::Beginning Date\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::dtpEnd\\TYPE::6\\CAPTION::Ending Date\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::txtPartStart\\TYPE::2\\CAPTION::Part\\GROUP::2\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::txtPartEnd\\TYPE::2\\GROUP::2\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::chkAllParts\\TYPE::9\\CAPTION::All Parts\\GROUP::2\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdAddPart\\TYPE::5\\CAPTION::Add\\GROUP::3\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdClearPart\\TYPE::5\\CAPTION::Clear\\GROUP::3\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::lvwPart\\TYPE::7\\CAPTION::Part Range\\GROUP::-1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::txtCustStart\\TYPE::2\\CAPTION::Customer\\GROUP::4\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::txtCustEnd\\TYPE::2\\GROUP::4\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::chkAllCust\\TYPE::9\\CAPTION::All Customers\\GROUP::4\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdAddCust\\TYPE::5\\CAPTION::Add\\GROUP::5\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdClearCust\\TYPE::5\\CAPTION::Clear\\GROUP::5\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::lvwCustomers\\TYPE::7\\GROUP::-1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdPrint\\TYPE::5\\CAPTION::Print\\GROUP::-1\\BROWSER::0\\SIZE::1
+
+Program.Sub.ScreenSS.End
+
